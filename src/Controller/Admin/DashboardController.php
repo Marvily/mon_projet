@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Recette;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -15,7 +16,7 @@ class DashboardController extends AbstractDashboardController
 {
     public function index(): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+      //  $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         return parent::index();
 
@@ -42,8 +43,10 @@ class DashboardController extends AbstractDashboardController
     }
 
     public function configureMenuItems(): iterable
-    {
+    { 
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToCrud('Recettes', 'fas fa-utensils', Recette::class);
+       
         // yield MenuItem::linkTo(SomeCrudController::class, 'The Label', 'fas fa-list');
     }
 }
